@@ -1,6 +1,7 @@
 package com.matete.agentmanage.common;
 
 import com.jfinal.config.Routes;
+import com.matete.agentmange.controller.AccountController;
 import com.matete.agentmange.controller.FrameController;
 
 /**
@@ -12,6 +13,7 @@ public class AdminRoute extends Routes {
     public void config() {
         setBaseViewPath("/WEB-INF/view");
         add("/frame", FrameController.class, "/frame");
+        add("/", AccountController.class, "/account");
     }
 
 }

@@ -11,6 +11,7 @@ import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.render.ViewType;
 import com.jfinal.template.Engine;
+import com.matete.agentmange.interceptor.LoginInterceptor;
 
 /**
  * API引导式配置
@@ -67,7 +68,7 @@ public class JfinalConfig extends JFinalConfig {
 	 * 配置全局拦截器
 	 */
 	public void configInterceptor(Interceptors me) {
-		
+		//me.add(new LoginInterceptor());
 	}
 	
 	/**
