@@ -31,6 +31,12 @@ public class JfinalConfig extends JFinalConfig {
 		
 		// 参数分隔符
 		me.setUrlParaSeparator("&");
+		
+		//404错误页
+		me.setError404View("/error/error404.jsp");
+		
+		//505错误页
+		me.setError500View("/error/error500.jsp");
 	}
 	
 	/**

@@ -30,18 +30,18 @@
 
 			<section class="error-wrapper text-center">
 				<h1>
-					<img alt="" src="${BASE_PATH}/images/404-error.png">
+					<img alt="" src="${BASE_PATH}/images/404-error.png"/>
 				</h1>
 				<h2>page not found</h2>
 				<h3>We Couldn’t Find This Page</h3>
-				<a class="back-btn" href="index.html"> Back To Home</a>
+				<a class="back-btn" href="${BASE_PATH}/"> Back To Home</a>
 			</section>
 
 		</div>
 	</section>
 
 	<!-- Placed js at the end of the document so the pages load faster -->
-	<script src="${BASE_PATH}/js/jquery-1.10.2.min.js"></script>
+	<script src="${BASE_PATH}/js/jquery.min.js"></script>
 	<script src="${BASE_PATH}/js/jquery-migrate-1.2.1.min.js"></script>
 	<script src="${BASE_PATH}/js/bootstrap.min.js"></script>
 	<script src="${BASE_PATH}/js/modernizr.min.js"></script>
