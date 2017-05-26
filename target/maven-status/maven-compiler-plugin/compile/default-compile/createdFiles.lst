@@ -1,10 +1,7 @@
-com\demo\index\IndexController.class
-com\demo\blog\BlogValidator.class
-com\demo\common\DemoConfig.class
-com\demo\common\model\base\BaseBlog.class
-com\demo\common\model\_JFinalDemoGenerator.class
-com\demo\blog\BlogService.class
-com\demo\blog\BlogController.class
-com\demo\common\model\_MappingKit.class
-com\demo\common\model\Blog.class
-com\demo\blog\BlogInterceptor.class
+com\matete\agentmanage\model\_JFinalDemoGenerator.class
+com\matete\agentmanage\common\JfinalConfig.class
+com\matete\agentmanage\model\Blog.class
+com\matete\agentmanage\model\_MappingKit.class
+com\matete\agentmanage\common\AdminRoute.class
+com\matete\agentmanage\model\base\BaseBlog.class
+com\matete\agentmange\controller\FrameController.class

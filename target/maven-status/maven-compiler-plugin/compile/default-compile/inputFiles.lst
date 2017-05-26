@@ -1,10 +1,7 @@
-C:\codes\jfinal_demo_for_maven\src\main\java\com\demo\common\model\base\BaseBlog.java
-C:\codes\jfinal_demo_for_maven\src\main\java\com\demo\index\IndexController.java
-C:\codes\jfinal_demo_for_maven\src\main\java\com\demo\common\model\_MappingKit.java
-C:\codes\jfinal_demo_for_maven\src\main\java\com\demo\blog\BlogValidator.java
-C:\codes\jfinal_demo_for_maven\src\main\java\com\demo\blog\BlogService.java
-C:\codes\jfinal_demo_for_maven\src\main\java\com\demo\blog\BlogController.java
-C:\codes\jfinal_demo_for_maven\src\main\java\com\demo\common\model\_JFinalDemoGenerator.java
-C:\codes\jfinal_demo_for_maven\src\main\java\com\demo\common\DemoConfig.java
-C:\codes\jfinal_demo_for_maven\src\main\java\com\demo\blog\BlogInterceptor.java
-C:\codes\jfinal_demo_for_maven\src\main\java\com\demo\common\model\Blog.java
+C:\codes\AgentManage\src\main\java\com\matete\agentmanage\model\Blog.java
+C:\codes\AgentManage\src\main\java\com\matete\agentmange\controller\FrameController.java
+C:\codes\AgentManage\src\main\java\com\matete\agentmanage\common\AdminRoute.java
+C:\codes\AgentManage\src\main\java\com\matete\agentmanage\model\base\BaseBlog.java
+C:\codes\AgentManage\src\main\java\com\matete\agentmanage\model\_JFinalDemoGenerator.java
+C:\codes\AgentManage\src\main\java\com\matete\agentmanage\model\_MappingKit.java
+C:\codes\AgentManage\src\main\java\com\matete\agentmanage\common\JfinalConfig.java
