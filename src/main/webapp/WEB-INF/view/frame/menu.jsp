@@ -67,9 +67,37 @@
 			<li class="menu-list"><a href=""><i class="fa fa-users"></i>
 					<span>管理代理&会员</span></a>
 				<ul class="sub-menu-list">
+<<<<<<< Updated upstream
 					<li><a href="mail.html">减少房卡</a></li>
 					<li><a href="mail_compose.html">冻结账户</a></li>
 					<li><a href="mail_view.html">代理审核</a></li>
+=======
+					<li><a href="form_layouts.html">表单布局</a></li>
+					<li><a href="form_advanced_components.html">表单组件</a></li>
+					<li><a href="form_wizard.html">表单向导</a></li>
+					<li><a href="form_validation.html">表单验证</a></li>
+					<li><a href="editors.html">编辑器</a></li>
+					<li><a href="inline_editors.html">内联编辑器</a></li>
+					<li><a href="pickers.html">时间控件</a></li>
+					<li><a href="dropzone.html">Dropzone文件上传插件</a></li>
+					<li><a href="http://www.weidea.net"> More</a></li>
+				</ul></li>
+			<li class="menu-list"><a href=""><i
+					class="fa fa-bar-chart-o"></i> <span>统计图表</span></a>
+				<ul class="sub-menu-list">
+					<li><a href="flot_chart.html"> Flot Charts</a></li>
+					<li><a href="morris.html"> Morris Charts</a></li>
+					<li><a href="chartjs.html"> Chartjs</a></li>
+					<li><a href="c3chart.html"> C3 Charts</a></li>
+				</ul></li>
+			<li class="menu-list"><a href="#"><i class="fa fa-th-list"></i>
+					<span>数据表格</span></a>
+				<ul class="sub-menu-list">
+					<li><a href="basic_table.html">基础表格</a></li>
+					<li><a href="dynamic_table.html">高级表格</a></li>
+					<li><a href="${BASE_PATH}/frame/table">响应式表格</a></li>
+					<li><a href="editable_table.html">编辑表格</a></li>
+>>>>>>> Stashed changes
 				</ul></li>
 
 			<li class="menu-list"><a href=""><i class="fa fa-wrench"></i>

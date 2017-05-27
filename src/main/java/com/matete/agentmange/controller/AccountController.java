@@ -1,50 +1,73 @@
 package com.matete.agentmange.controller;
 
-import com.alibaba.druid.util.StringUtils;
-import com.jfinal.aop.Before;
+import java.util.List;
+
 import com.jfinal.core.Controller;
-import com.matete.agentmanage.model.ProxyUser;
-import com.matete.agentmanage.service.LoginService;
-import com.matete.agentmanage.service.impl.LoginServiceImpl;
-import com.matete.agentmange.validator.LoginValidator;
+import com.jfinal.plugin.activerecord.Record;
+import com.matete.agentmanage.model.ResponseResult;
+import com.matete.agentmanage.service.AccountService;
 
 public class AccountController extends Controller {
 
-	LoginService loginService = new LoginServiceImpl();
+    private static AccountService accountService = new AccountService();
 
-	public void index() {
-		redirect("/login");
-	}
+    public void index() {
+        redirect("/login");
+    }
 
-	/**
-	 * 登录页
-	 */
-	public void login() {
-		renderJsp("login.jsp");
-	}
+    /**
+     * 登录页
+     */
+    public void login() {
+        renderJsp("login.jsp");
+    }
 
-	/**
-	 * 注册页
-	 */
-	public void register() {
-		renderJsp("register.jsp");
-	}
+    /**
+     * 注册页
+     */
+    public void register() {
+        // 查询代理级别下拉
+        List<Record> agentLevelList = accountService
+                .getPropertyList("AgentLevel");
+        setAttr("agentLevelList", agentLevelList);
+        renderJsp("register.jsp");
+    }
 
-	/**
-	 * 登录
-	 */
-	// @Before(LoginValidator.class)
-	public void loginAction() {
-		String telephone = getPara("telephone");
-		String password = getPara("password");
-		boolean falg = loginService.login(telephone, password);
-		if (falg) {
-			redirect("/frame");
-		} else {
-			setAttr("tele", telephone);
-			setAttr("passError", "账号密码不匹配");
-			forwardAction("/login"); // 跳转
-			// render("/login"); // 重定向
-		}
-	}
+    /**
+     * 登录
+     */
+    public void loginAction() {
+        String phone = getPara("phone");
+        String password = getPara("password");
+        boolean isSuccess = accountService.login(phone, password);
+        if (isSuccess) {
+            renderJson(new ResponseResult(true));
+        } else {
+            renderJson(new ResponseResult(false, "用户名或密码错误"));
+
+        }
+    }
+
+    /**
+     * 注册
+     */
+    public void registerAction() {
+        String phone = getPara("phone");
+        String password = getPara("password");
+        String name = getPara("name");
+        String qq = getPara("qq");
+        int agentLevel = getParaToInt("agentLevel");
+
+        boolean isSuccess = accountService.register(
+                phone,
+                password,
+                name,
+                qq,
+                agentLevel);
+        if (isSuccess) {
+            renderJson(new ResponseResult(true));
+        } else {
+
+        }
+    }
 }

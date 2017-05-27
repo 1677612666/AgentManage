@@ -16,7 +16,10 @@ import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 public class _MappingKit {
 
 	public static void mapping(ActiveRecordPlugin arp) {
-		arp.addMapping("proxy_user", "id", ProxyUser.class);
+		arp.addMapping("agent", "ID", Agent.class);
+		arp.addMapping("property", "ID", Property.class);
+		arp.addMapping("record_login", "ID", RecordLogin.class);
+		arp.addMapping("record_recharge", "ID", RecordRecharge.class);
 	}
 }
 

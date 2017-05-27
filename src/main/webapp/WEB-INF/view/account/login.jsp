@@ -26,19 +26,15 @@
 
 <div class="container">
 
-    <form class="form-signin" method="post" action="${BASE_PATH}/loginAction">
+    <form class="form-signin" method="post" id="loginForm">
         <div class="form-signin-heading text-center">
             <h1 class="sign-title">登录</h1>
             <img src="${BASE_PATH}/images/login-logo.png" alt=""/>
         </div>
         <div class="login-wrap">
-			<input id="tele" type="text" value="${tele}" class="form-control" name="telephone"
-				placeholder="手机号"
-				onkeyup="if(!/^\d+$/.test(this.value)) tip.innerHTML='必须输入数字，且不能有空格'; else tip.innerHTML='';"><font
-				color="red"><b><span id="tip">${phoneMsg }</span></b></font>
-			<input id="phone" type="password" class="form-control" name="password" placeholder="密码">
-           	<font color="red" ><b><span id="cue" >${passError}</span></b></font>
-            <button id="subm" class="btn btn-lg btn-login btn-block" type="submit">
+			<input type="text" class="form-control" name="phone" placeholder="手机号" />
+			<input type="password" class="form-control" name="password" placeholder="密码"/>
+            <button class="btn btn-lg btn-login btn-block" type="submit"/>
                <!--  <i class="fa fa-check"> -->
                 	<span>登录</span>
                 <!-- </i> -->
@@ -58,7 +54,7 @@
             </label>
 
         </div>
-
+    </form>
         <!-- Modal -->
         <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
             <div class="modal-dialog">
@@ -80,13 +76,7 @@
             </div>
         </div>
         <!-- modal -->
-
-    </form>
-
 </div>
-
-
-
 <!-- Placed js at the end of the document so the pages load faster -->
 
 <!-- Placed js at the end of the document so the pages load faster -->
@@ -94,56 +84,67 @@
 <script src="${BASE_PATH}/js/bootstrap.min.js"></script>
 <script src="${BASE_PATH}/js/modernizr.min.js"></script>
 <script src="${BASE_PATH}/js/layer/layer.js"></script>
-
-	<script>
-    	$(function(){
-   			$("#subm").click(function(){
-   				var tele = $("#tele").val();
-   				var phone = $("#phone").val();
-   				
-   				if(tele==""){
-   					$("#tip").html("帐号不能为空");
-	   				return false;
-   				}
-   				if(phone==""){
-   					$("#cue").html("密码不能为空");
-   					return false;
-   				}
-   			});
-    		
-// 		   $("#subm").click(function(){
-// 			   $.ajax({
-// 					type : "POST",
-// 					url : "/loginAction",
-// 					data : $(tag).serialize(),
-// 					async : false,
-// 					error : function(response) {
-// 						layer.closeAll('loading');
-// 						layer.msg(response.responseText);
-// 					},
-// 					success : function(data) {
-// 						alert(data)
-// 						layer.closeAll('loading');
-// 						if (data.status == true) {
-// 							window.location.href = "/personal/view";
-// 						} else {
-// 							layer.msg(data.errorMsg);
-// 							if (tag == "#personalForm") {
-// 								$("#personal img").attr(
-// 										"src",
-// 										"/image/verifyCode?loginType=personal&date="
-// 												+ Date.parse(new Date()));
-// 							} else {
-// 								$("#company img").attr(
-// 										"src",
-// 										"/image/verifyCode?loginType=company&date="
-// 												+ Date.parse(new Date()));
-// 							}
-// 						}
-// 					}
-// 				});
-// 		   });
-    	})
-	</script>
+<script src="${BASE_PATH}/js/jquery.validate.js"></script>
+<script src="${BASE_PATH}/js/common.js"></script>
+<script>
+    
+    //添加手机号验证
+    jQuery.validator.addMethod("isMobile", function(value, element) {
+        var length = value.length;
+        var mobile = /^1\d{10}$/;
+        return this.optional(element)
+                || (length == 11 && mobile.test(value));
+    }, "请正确填写您的手机号码");
+    
+    // ajax提交表单回调
+    function submitResult(data){
+    	//layer.msg(JSON.stringify(data));  //调试ajax返回的json数据
+        if(data.success == true){
+              window.location.href = "${BASE_PATH}/frame";
+        }else{
+            layer.msg(data.errorMsg);
+        }
+    }
+    
+    // 验证表单
+    $(document).ready(
+            function() {
+                $("#loginForm").validate({
+                    submitHandler : function() {
+                        submitForm("#loginForm", "${BASE_PATH}/loginAction", submitResult);
+                    },
+                    rules : {
+                        phone : {
+                            required : true,
+                            isMobile : true
+                        },
+                        password : {
+                            required : true
+                        }
+                    },
+                    messages : {
+                        phone : {
+                            required : "请输入手机号",
+                            isMobile : "手机号格式不正确"
+                        },
+                        password : {
+                            required : "请输入密码"
+                        }
+                    },
+                    errorElement : "em",
+                    //重写showErrors
+                    showErrors : function(errorMap, errorList) {
+                        $.each(errorList, function(i, v) {
+                            tips(v.message, v.element);
+                            return false;
+                        });
+                    },
+                    onsubmit : true,
+                    onfocusout : false,
+                    onkeyup : false,
+                    onclick : false
+                });
+            }); 
+</script>
 </body>
 </html>
