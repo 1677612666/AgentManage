@@ -48,7 +48,15 @@
     <div class="main-content" >
     
         <jsp:include page="top.jsp"></jsp:include>
-        
+        <!-- page heading start-->
+		<div class="page-heading">
+			<h3>我的信息</h3>
+			<ul class="breadcrumb">
+				<li><a href="#">仪表盘</a></li>
+				<li class="active">我的仪表盘</li>
+			</ul>
+		</div>
+<!-- page heading end-->
         <!--body wrapper start-->
         <div class="wrapper">
             <div class="row">

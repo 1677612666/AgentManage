@@ -21,7 +21,7 @@
 		<ul class="notification-menu">
 			<li><a href="#"
 				class="btn btn-default dropdown-toggle info-number"
-				data-toggle="dropdown"> <i class="fa fa-tasks"></i> <span
+				data-toggle="dropdown"> <i class="fa fa-sun-o"></i> <span
 					class="badge">8</span>
 			</a>
 				<div class="dropdown-menu dropdown-menu-head pull-right">
@@ -99,7 +99,7 @@
 					<ul class="dropdown-list normal-list">
 						<li class="new"><a href=""> <span class="thumb"><img
 									src="${BASE_PATH}/images/photos/user1.png" alt="" /></span> <span
-								class="desc"> <span class="name">John Doe <span
+								class="desc"> <span class="name">昵称 <span
 										class="badge badge-success">new</span></span> <span class="msg">Lorem
 										ipsum dolor sit amet...</span>
 							</span>
@@ -162,15 +162,13 @@
 						<li class="new"><a href="">See All Notifications</a></li>
 					</ul>
 				</div></li>
+				<!-- PC端 个人资料全局显示 -->
 			<li><a href="#" class="btn btn-default dropdown-toggle"
-				data-toggle="dropdown"> <img
-					src="${BASE_PATH}/images/photos/user-avatar.png" alt="" /> John
-					Doe <span class="caret"></span>
+				data-toggle="dropdown">昵称 <span class="caret"></span>
 			</a>
 				<ul class="dropdown-menu dropdown-menu-usermenu pull-right">
-					<li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
-					<li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
-					<li><a href="#"><i class="fa fa-sign-out"></i> Log Out</a></li>
+					<li><a href="#"><i class="fa fa-user"></i>我的信息</a></li>
+					<li><a href="login"><i class="fa fa-sign-out"></i>退出系统</a></li>
 				</ul></li>
 
 		</ul>
@@ -179,13 +177,3 @@
 
 </div>
 <!-- header section end-->
-
-<!-- page heading start-->
-<div class="page-heading">
-	<h3>仪表盘</h3>
-	<ul class="breadcrumb">
-		<li><a href="#">仪表盘</a></li>
-		<li class="active">我的仪表盘</li>
-	</ul>
-</div>
-<!-- page heading end-->

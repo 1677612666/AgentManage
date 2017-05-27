@@ -26,19 +26,23 @@
 
 <div class="container">
 
-    <form class="form-signin" action="${BASE_PATH}/frame">
+    <form class="form-signin" method="post" action="${BASE_PATH}/loginAction">
         <div class="form-signin-heading text-center">
             <h1 class="sign-title">登录</h1>
             <img src="${BASE_PATH}/images/login-logo.png" alt=""/>
         </div>
         <div class="login-wrap">
-            <input type="text" class="form-control" placeholder="用户名" autofocus>
-            <input type="password" class="form-control" placeholder="密码">
-
-            <button class="btn btn-lg btn-login btn-block" type="submit">
-                <i class="fa fa-check"></i>
+			<input id="tele" type="text" value="${tele}" class="form-control" name="telephone"
+				placeholder="手机号"
+				onkeyup="if(!/^\d+$/.test(this.value)) tip.innerHTML='必须输入数字，且不能有空格'; else tip.innerHTML='';"><font
+				color="red"><b><span id="tip">${phoneMsg }</span></b></font>
+			<input id="phone" type="password" class="form-control" name="password" placeholder="密码">
+           	<font color="red" ><b><span id="cue" >${passError}</span></b></font>
+            <button id="subm" class="btn btn-lg btn-login btn-block" type="submit">
+               <!--  <i class="fa fa-check"> -->
+                	<span>登录</span>
+                <!-- </i> -->
             </button>
-
             <div class="registration">
                 没有帐号?
                 <a class="" href="register">
@@ -89,5 +93,57 @@
 <script src="${BASE_PATH}/js/jquery.min.js"></script>
 <script src="${BASE_PATH}/js/bootstrap.min.js"></script>
 <script src="${BASE_PATH}/js/modernizr.min.js"></script>
+<script src="${BASE_PATH}/js/layer/layer.js"></script>
+
+	<script>
+    	$(function(){
+   			$("#subm").click(function(){
+   				var tele = $("#tele").val();
+   				var phone = $("#phone").val();
+   				
+   				if(tele==""){
+   					$("#tip").html("帐号不能为空");
+	   				return false;
+   				}
+   				if(phone==""){
+   					$("#cue").html("密码不能为空");
+   					return false;
+   				}
+   			});
+    		
+// 		   $("#subm").click(function(){
+// 			   $.ajax({
+// 					type : "POST",
+// 					url : "/loginAction",
+// 					data : $(tag).serialize(),
+// 					async : false,
+// 					error : function(response) {
+// 						layer.closeAll('loading');
+// 						layer.msg(response.responseText);
+// 					},
+// 					success : function(data) {
+// 						alert(data)
+// 						layer.closeAll('loading');
+// 						if (data.status == true) {
+// 							window.location.href = "/personal/view";
+// 						} else {
+// 							layer.msg(data.errorMsg);
+// 							if (tag == "#personalForm") {
+// 								$("#personal img").attr(
+// 										"src",
+// 										"/image/verifyCode?loginType=personal&date="
+// 												+ Date.parse(new Date()));
+// 							} else {
+// 								$("#company img").attr(
+// 										"src",
+// 										"/image/verifyCode?loginType=company&date="
+// 												+ Date.parse(new Date()));
+// 							}
+// 						}
+// 					}
+// 				});
+// 		   });
+    	})
+	</script>
 </body>
 </html>

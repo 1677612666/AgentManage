@@ -26,32 +26,28 @@
 
 <div class="container">
 
-    <form class="form-signin" action="index.html">
+    <form class="form-signin" method="post" action="index">
         <div class="form-signin-heading text-center">
-            <h1 class="sign-title">注册</h1>
-            <img src="${BASE_PATH}/images/login-logo.png" alt=""/>
+            <h1 class="sign-title">麻特特代理中心注册</h1>
+            <!--<img src="images/login-logo.png" alt=""/>-->
         </div>
 
 
         <div class="login-wrap">
             <p> 请输入个人信息</p>
-            <input type="text" autofocus="" placeholder="邮箱" class="form-control">
-            <input type="password" placeholder="密码" class="form-control">
-            <input type="password" placeholder="确认密码" class="form-control">
-            <label class="checkbox">
-                <input type="checkbox" value="agree this condition"> 同意注册协议
-            </label>
-            <button type="submit" class="btn btn-lg btn-login btn-block">
-                <i class="fa fa-check"></i>
+            <input type="text" name="telephone" placeholder="手机号码" class="form-control">
+            <input type="password" name="password" placeholder="密码" class="form-control">
+            <input type="password" name="passwordtow" placeholder="确认密码" class="form-control">
+            <input type="text" name="name" placeholder="新代理姓名" class="form-control">
+            <input type="text" name="QQ" placeholder="联系QQ" class="form-control">
+            <span><b> 选择代理 </b>&nbsp;&nbsp;&nbsp;</span>
+           	<select id="example-multiple-optgroups" name="agent">
+				<option value="1" selected=”selected”>地区代理<option value="2" >二级代理<option value="3" >三级代理
+			</select>
+            <button type="submit"   class="btn btn-lg btn-login btn-block">
+                <!-- <i class="fa fa-check"></i> -->
+                <span>提交注册</span>
             </button>
-
-            <div class="registration">
-                已注册
-                <a href="login" class="">
-                    登录
-                </a>
-            </div>
-
         </div>
 
     </form>
