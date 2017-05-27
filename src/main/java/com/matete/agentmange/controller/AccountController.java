@@ -2,6 +2,8 @@ package com.matete.agentmange.controller;
 
 import java.util.List;
 
+import org.apache.commons.lang3.Validate;
+
 import com.jfinal.core.Controller;
 import com.jfinal.plugin.activerecord.Record;
 import com.matete.agentmanage.model.ResponseResult;
@@ -9,7 +11,7 @@ import com.matete.agentmanage.service.AccountService;
 
 public class AccountController extends Controller {
 
-    private static AccountService accountService = new AccountService();
+    private static final AccountService accountService = new AccountService();
 
     public void index() {
         redirect("/login");
@@ -39,12 +41,16 @@ public class AccountController extends Controller {
     public void loginAction() {
         String phone = getPara("phone");
         String password = getPara("password");
+        
+        // 空参数拦截
+        Validate.notBlank(phone);
+        Validate.notBlank(password);
+        
         boolean isSuccess = accountService.login(phone, password);
         if (isSuccess) {
             renderJson(new ResponseResult(true));
         } else {
             renderJson(new ResponseResult(false, "用户名或密码错误"));
-
         }
     }
 
@@ -56,6 +62,13 @@ public class AccountController extends Controller {
         String password = getPara("password");
         String name = getPara("name");
         String qq = getPara("qq");
+        
+        // 空参数拦截
+        Validate.notBlank(phone);
+        Validate.notBlank(password);
+        Validate.notBlank(name);
+        Validate.notBlank(qq);
+        
         int agentLevel = getParaToInt("agentLevel");
 
         boolean isSuccess = accountService.register(
@@ -67,7 +80,7 @@ public class AccountController extends Controller {
         if (isSuccess) {
             renderJson(new ResponseResult(true));
         } else {
-
+            renderJson(new ResponseResult(false, "注册失败，请重试"));
         }
     }
 }

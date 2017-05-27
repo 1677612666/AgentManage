@@ -45,7 +45,9 @@
 				<select id="example-multiple-optgroups" name="agentLevel">
 					<option value="">选择代理</option>
 					<c:forEach var="item" items="${agentLevelList}" varStatus="status">
-						<option value="${item.PropertyValue}">${item.PropertyName}</option>
+					    <c:if test = ${item.PropertyValue != "0"}>
+						  <option value="${item.PropertyValue}">${item.PropertyName}</option>
+						</c:if>
 					</c:forEach>
 				</select>
 				<button type="submit" class="btn btn-lg btn-login btn-block" />
