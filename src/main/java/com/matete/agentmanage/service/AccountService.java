@@ -19,11 +19,11 @@ public class AccountService {
      * @param password
      * @return
      */
-    public boolean login(String phone, String password) {
+    public Agent login(String phone, String password) {
         return agentDao.findFirst(
                 "select * from agent where Phone = ? and Password = ?",
                 phone,
-                DigestUtils.md5Hex(password)) != null;
+                DigestUtils.md5Hex(password));
     }
 
     /**

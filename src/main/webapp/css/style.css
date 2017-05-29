@@ -13,7 +13,7 @@ body {
     background: #424f63;
     font-family: 'Open Sans', sans-serif;
     color: #7a7676;
-    line-height: 20px;
+    line-height: 25px;
     overflow-x: hidden;
     font-size: 14px;
 }
@@ -265,7 +265,7 @@ hr {
 }
 
 .left-side .logged-user .media-body {
-    margin-left: 20px;
+    margin-left: 10px;
     color: #d7d7d7;
 }
 

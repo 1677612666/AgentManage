@@ -7,12 +7,12 @@
 
 	<!--logo and iconic logo start-->
 	<div class="logo">
-		<a href="index.html"><img src="${BASE_PATH}/images/logo.png"
+		<a href="index"><img src="${BASE_PATH}/images/logo.png"
 			alt="" /></a>
 	</div>
 
 	<div class="logo-icon text-center">
-		<a href="index.html"><img src="${BASE_PATH}/images/logo_icon.png"
+		<a href="index"><img src="${BASE_PATH}/images/logo_icon.png"
 			alt="" /></a>
 	</div>
 	<!--logo and iconic logo end-->
@@ -24,9 +24,10 @@
 			<div class="media logged-user">
 				<div class="media-body">
 					<h4>
-						<a href="#">橙子</a>
+						<a href="#">${agent.name}</a>
 					</h4>
-					<span>1677612666@qq.com</span>
+					手机号:<span>${agent.phone}</span><br/>
+					推广码:<span>${agent.ID}</span>
 				</div>
 			</div>
 
@@ -34,7 +35,7 @@
 			<ul class="nav nav-pills nav-stacked custom-nav">
 				<!-- <li><a href="#"><i class="fa fa-user"></i> <span>个人信息</span></a></li>
 				<li><a href="#"><i class="fa fa-cog"></i> <span>设置</span></a></li> -->
-				<li><a href="login"><i class="fa fa-sign-out"></i> <span>退出系统</span></a></li>
+				<li><a href="loginOut"><i class="fa fa-sign-out"></i> <span>退出系统</span></a></li>
 			</ul>
 		</div>
 
@@ -48,8 +49,8 @@
 			<li class="menu-list"><a href=""><i class="fa fa-male"></i>
 					<span>我的代理</span></a>
 				<ul class="sub-menu-list">
-					<li><a href="blank_page.html">增加代理</a></li>
-					<li><a href="boxed_view.html">代理列表</a></li>
+					<li><a href="agent/addUI">增加代理</a></li>
+					<li><a href="agent">代理列表</a></li>
 				</ul></li>
 				
 			<li class="menu-list"><a href=""><i class="fa fa-yen"></i>

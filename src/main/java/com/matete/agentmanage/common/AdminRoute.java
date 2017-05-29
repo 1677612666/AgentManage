@@ -14,6 +14,7 @@ public class AdminRoute extends Routes {
         add("/frame", FrameController.class, "/frame");
         add("/", AccountController.class, "/account");
         add("/member", MemberController.class, "/member");
+        add("/agent", AgentController.class, "/agent");
     }
 
 }
