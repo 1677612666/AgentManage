@@ -60,17 +60,13 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <h4 class="modal-title">忘记密码 ?</h4>
                     </div>
                     <div class="modal-body">
-                        <p>请输入邮箱以重置密码.</p>
-                        <input type="text" name="email" placeholder="邮箱" autocomplete="off" class="form-control placeholder-no-fix">
-
+                        <b><p>请联系你的上级代理以便重置密码 .</p></b>
                     </div>
                     <div class="modal-footer">
-                        <button data-dismiss="modal" class="btn btn-default" type="button">取消</button>
-                        <button class="btn btn-primary" type="button">提交</button>
+                        <button data-dismiss="modal" class="btn btn-default" type="button">我知道了</button>
                     </div>
                 </div>
             </div>

@@ -27,7 +27,7 @@
 				<ul class="dropdown-menu dropdown-menu-usermenu pull-right">
 					<li><a href="index"><i class="fa fa-user"></i>我的信息</a></li>
 					<li><a href="index"><i class="fa fa-wrench"></i>修改个人资料</a></li>
-					<li><a href="loginOut"><i class="fa fa-sign-out"></i>退出系统</a></li>
+					<li><a href="${BASE_PATH}/loginOut"><i class="fa fa-sign-out"></i>退出系统</a></li>
 				</ul></li>
 
 		</ul>

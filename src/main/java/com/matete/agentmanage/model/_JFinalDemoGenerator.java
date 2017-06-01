@@ -6,7 +6,7 @@ import com.jfinal.kit.PathKit;
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.generator.Generator;
 import com.jfinal.plugin.druid.DruidPlugin;
-import com.matete.agentmanage.common.JfinalConfig;
+import com.matete.agentmanage.common.MainConfig;
 
 /**
  * 本 demo 仅表达最为粗浅的 jfinal 用法，更为有价值的实用的企业级用法
@@ -18,7 +18,7 @@ public class _JFinalDemoGenerator {
 	
 	public static DataSource getDataSource() {
 		PropKit.use("config.txt");
-		DruidPlugin druidPlugin = JfinalConfig.createDruidPlugin();
+		DruidPlugin druidPlugin = MainConfig.createDruidPlugin();
 		druidPlugin.start();
 		return druidPlugin.getDataSource();
 	}

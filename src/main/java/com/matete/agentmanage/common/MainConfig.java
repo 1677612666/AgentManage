@@ -18,7 +18,7 @@ import com.matete.agentmange.interceptor.LoginInterceptor;
 /**
  * API引导式配置
  */
-public class JfinalConfig extends JFinalConfig {
+public class MainConfig extends JFinalConfig {
 	
 	/**
 	 * 配置常量

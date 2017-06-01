@@ -42,14 +42,14 @@
 		<!--sidebar nav start-->
 		<ul class="nav nav-pills nav-stacked custom-nav">
 			<!-- 单挑选项 -->
-			<li class="active"><a href="frame"><i
+			<li class="active"><a href="${BASE_PATH}/frame"><i
 					class="fa fa-home"></i> <span>我的信息</span></a></li>
 			<li><a href="${BASE_PATH}/member"><i class="fa fa-tasks"></i> <span>我的会员</span></a></li>
 			<!-- 菜单选项 -->
 			<li class="menu-list"><a href=""><i class="fa fa-male"></i>
 					<span>我的代理</span></a>
 				<ul class="sub-menu-list">
-					<li><a href="agent/addUI">增加代理</a></li>
+					<li><a href='${BASE_PATH}/agent/addUI?id=${agent.ID}'>增加代理</a></li>
 					<li><a href="agent">代理列表</a></li>
 				</ul></li>
 				
@@ -59,20 +59,21 @@
 					<li><a href="general.html">充值房卡</a></li>
 					<li><a href="buttons.html">充值记录</a></li>
 				</ul></li>
-			<li class="menu-list"><a href=""><i class="fa fa-cogs"></i>
-					<span>操作记录</span></a>
-				<ul class="sub-menu-list">
-					<li><a href="grids.html">登录记录</a></li>
-				</ul></li>
 
 			<li class="menu-list"><a href=""><i class="fa fa-users"></i>
 					<span>管理代理&会员</span></a>
 				<ul class="sub-menu-list">
 					<li><a href="mail.html">减少房卡</a></li>
 					<li><a href="mail_compose.html">冻结账户</a></li>
-					<li><a href="mail_view.html">代理审核</a></li>
+					<li><a href="${BASE_PATH}/agent/agentAuditing">代理审核</a></li>
 				</ul></li>
-
+				
+			<li class="menu-list"><a href=""><i class="fa fa-cogs"></i>
+					<span>操作记录</span></a>
+				<ul class="sub-menu-list">
+					<li><a href="">登录记录</a></li>
+				</ul></li>
+				
 			<li class="menu-list"><a href=""><i class="fa fa-wrench"></i>
 					<span>游戏系统管理</span></a>
 				<ul class="sub-menu-list">

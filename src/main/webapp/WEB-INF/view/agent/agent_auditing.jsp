@@ -10,7 +10,8 @@
 <meta name="description" content="">
 <meta name="author" content="ThemeBucket">
 <link rel="shortcut icon" href="#" type="image/png">
-<title>我的代理</title>
+<title>管理代理</title>
+
 
 <!--responsive table-->
 <link href="${BASE_PATH}/css/table-responsive.css" rel="stylesheet" />
@@ -41,9 +42,9 @@
 
 		<!-- page heading start-->
 		<div class="page-heading">
-			<h3>我的代理</h3>
+			<h3>管理代理</h3>
 			 <ul class="breadcrumb">
-                <li class="active"> 代理列表 </li>
+                <li class="active">未审核代理列表 </li>
             </ul>
 		</div>
 		<!-- page heading end-->
@@ -53,21 +54,21 @@
 			<div class="row">
 				<div class="col-sm-12">
 					<section class="panel"> <header class="panel-heading">
-					代理信息 &nbsp;&nbsp;&nbsp;
+					未审核代理信息 &nbsp;&nbsp;&nbsp;
 					<a onclick = "openSearch()"><i class="fa fa-search"></i></a> </header>
 					<div class="panel-body">
 						<section id="unseen">
 						<table class="table table-bordered table-hover table-striped table-condensed">
 							<thead>
 								<tr>
-									<th>代理ID</th>
 									<th>手机号</th>
+									<th>代理ID</th>
 									<th class="numeric">姓名</th>
 									<th class="numeric">推广码</th>
-									<th class="numeric">代理级别</th>
-									<th class="numeric">剩余房卡数</th>
-									<th class="numeric">总房卡数</th>
-									<th class="numeric">已代理数量</th>
+									<th class="numeric">申请代理级别</th>
+									<th class="numeric">上级代理ID</th>
+									<th class="numeric">QQ</th>
+									<th class="numeric">申请时间</th>
 									<th class="numeric">操作</th>
 								</tr>
 							</thead>
@@ -97,21 +98,19 @@
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal"
 							aria-hidden="true">&times;</button>
-						<h4 class="modal-title">查看代理</h4>
+						<h4 class="modal-title">查看未审核代理</h4>
 					</div>
-					<form action="agent/agentEdit" method="post">
+					<form id="AgentIDFrom" action="${BASE_PATH}/agent/agentAuditingEditUI" method="post">
 						<div class="modal-body">
 							<div class="form-group">
 								<label for="exampleInputEmail1">代理ID(推广码) : <span id="agentID"></span></label> 
-								<input type="hidden" name="ID" id="aid"  autocomplete="off" class="form-control placeholder-no-fix" />
+								<input type="hidden" name="ID" id="aid" autocomplete="off" class="form-control placeholder-no-fix" />
 							</div>
 							<div class="form-group">
 								<label for="exampleInputEmail1">姓名 : <span id="Name"></span></label> 
-								<input type="hidden" name="ID" id="aid"  autocomplete="off" class="form-control placeholder-no-fix" />
 							</div>
 							<div class="form-group">
 								<label for="exampleInputEmail1">手机号  : <span id="Phone"></span></label>
-								<input type="hidden" name="ID" id="aid"  autocomplete="off" class="form-control placeholder-no-fix" />
 							</div>
 							<div class="form-group">
 								<label for="exampleInputEmail1">密码  : <span>******</span></label>
@@ -119,30 +118,22 @@
 							</div>
 							<div class="form-group">
 								<label for="exampleInputEmail1">QQ号 : <span id="QQ"></span></label> 
-								<input type="hidden" name="ID" id="aid"  autocomplete="off" class="form-control placeholder-no-fix" />
 							</div>
 							<div class="form-group">
-								<label for="exampleInputEmail1">代理级别  : <span id="AgentLevel"></span></label>
-								<input type="hidden" name="ID" id="aid"  autocomplete="off" class="form-control placeholder-no-fix" />
+								<label for="exampleInputEmail1">申请的代理级别  : <span id="AgentLevel"></span></label>
 							</div>
 							<div class="form-group">
-								<label for="exampleInputEmail1">当前房卡数量 : <span id="CurHouseCardCount"></span></label>
-								<input type="hidden" name="ID" id="aid"  autocomplete="off" class="form-control placeholder-no-fix" />
+								<label for="exampleInputEmail1">上级代理ID : <span id="ParentId"></span></label>
 							</div>
 							<div class="form-group">
-								<label for="exampleInputEmail1">总房卡数量 : <span id="TotalHouseCardCount"></span></label>
-								<input type="hidden" name="ID" id="aid"  autocomplete="off" class="form-control placeholder-no-fix" />
+								<label for="exampleInputEmail1">最大代理数 : <span id="MaxAgentCount"></span></label>
 							</div>
 							<div class="form-group">
-								<label for="exampleInputEmail1">最大代理数: <span id="MaxAgentCount"></span></label>
-								<input type="hidden" name="ID" id="aid"  autocomplete="off" class="form-control placeholder-no-fix" />
-							</div>
-							<div class="form-group">
-								<label for="exampleInputEmail1">已代理数量: <span id="AgentCount"></span></label>
-								<input type="hidden" name="ID" id="aid"  autocomplete="off" class="form-control placeholder-no-fix" />
+								<label for="exampleInputEmail1">申请时间 : <span id="CreateTime"></span></label>
 							</div>
 						</div>
 						<div class="modal-footer">
+							<button data-dismiss="modal" onclick="openEdit()" class="btn btn-primary" type="button">修改</button>
 							<button data-dismiss="modal" class="btn btn-default" type="button">确定</button>
 						</div>
 					</form>
@@ -165,6 +156,17 @@
 	<script src="${BASE_PATH}/js/scripts.js"></script>
 	<script type="text/javascript">
 	
+		function openEdit(){
+			layer.confirm('你确定要修改此代理信息?', {
+				  btn: ['确定', '在想想'], //可以无限个按钮
+				  title: "提示",
+				}, function(index, layero){
+					$("#AgentIDFrom").submit();
+				}, function(index){
+				  //按钮【按钮二】的回调
+				});
+		}
+		
 		//详情页面
 		function agentLook(data) {
 			//model表单赋值
@@ -174,10 +176,10 @@
 				$("#Name").html(data.Name);
 				$("#Phone").html(data.Phone);
 				$("#QQ").html(data.QQ);
-				$("#CurHouseCardCount").html(data.CurHouseCardCount);
+				$("#ParentId").html(data.ParentId);
 				$("#TotalHouseCardCount").html(data.TotalHouseCardCount);
 				$("#MaxAgentCount").html(data.MaxAgentCount);
-				$("#AgentCount").html(data.AgentCount);
+				$("#CreateTime").html(data.CreateTime);
 				// 代理级别
 				var AgentLevel = "";
 				switch(data.AgentLevel)
@@ -195,6 +197,13 @@
 					AgentLevel = "无";
 				};
 				$("#AgentLevel").html(AgentLevel);
+				var ParentId = "";
+				if(data.ParentId==null){
+					ParentId = "无(请<b>绑定</b>)";
+				}else{
+					ParentId = data.ParentId;
+				}
+				$("#ParentId").html(ParentId);
 			})
 			
 			//弹出model
@@ -211,16 +220,34 @@
 				});
 		}
 		
-		// 跳转到编辑页面
-		function agentEdit(id) {
-			location.href="${BASE_PATH}/agent/getAgent?id="+id;
+		// 审核通过
+		function agentAuditingVia(id , ParentId) {
+			if(ParentId==null){
+				layer.confirm('该代理未绑定上级代理，请先绑定.', {
+					  btn: ['修改', '在想想'], //可以无限个按钮
+					  title: "提示",
+					}, function(index, layero){
+						location.href="${BASE_PATH}/agent/agentAuditingEditUI?ID="+id;
+					}, function(index){
+					  //按钮【按钮二】的回调
+					});
+			}else{
+				layer.confirm('你确定要此代理通过审核?', {
+					  btn: ['确定', '在想想'], //可以无限个按钮
+					  title: "提示",
+					}, function(index, layero){
+						location.href="${BASE_PATH}/agent/agentAuditingVia?ID="+id;
+					}, function(index){
+					  //按钮【按钮二】的回调
+					});
+			}
 		}
         
 		//后台用户分页
 		function page(curr) {
 			layer.load(2);
 			$.getJSON(
-						'${BASE_PATH}/agent/getAgentList',
+						'${BASE_PATH}/agent/getAgentAuditingList',
 						{
 							pageIndex : curr || 1
 						},
@@ -233,6 +260,7 @@
 							for (var i = 0; i < res.list.length; i++) {
 								//添加列表数据
 								var data = res.list[i];
+								// 代理级别显示
 								var AgentLevel = "";
 								switch(data.AgentLevel)
 								{
@@ -248,10 +276,23 @@
 								default:
 									AgentLevel = "无";
 								};
+								// 父级ID显示
+								var ParentId = "";
+								if(data.ParentId==null){
+									ParentId = "无";
+								}else{
+									ParentId = data.ParentId;
+								}
+								var QQ = "";
+								if(data.QQ==null){
+									QQ = "无";
+								}else{
+									QQ = data.QQ;
+								}
 							var str = "<tr><td>"
-									+ data.ID
-									+ "</td><td>"
 									+ data.Phone
+									+ "</td><td>"
+									+ data.ID
 									+ "</td><td class='numeric'>"
 									+ data.Name
 									+ "</td><td class='numeric'>"
@@ -259,13 +300,13 @@
 									+ "</td><td class='numeric'>"
 									+ AgentLevel
 									+ "</td><td class='numeric'>"
-									+ data.CurHouseCardCount
+									+ ParentId
 									+ "</td><td class='numeric'>"
-									+ data.TotalHouseCardCount
+									+ QQ
 									+ "</td><td class='numeric'>"
-									+ data.AgentCount
+									+ data.CreateTime
 									+ "</td><td class='numeric'><a onclick='agentLook("+JSON.stringify(data)+")'><span class='label label-info label-mini'>查看</span></a>"
-									+ "<a onclick='agentEdit("+data.ID+")' ><span class='label label-danger label-mini' style='margin-left:5px;'>编辑</span></a></td></tr>";
+									+ "<a onclick='agentAuditingVia("+data.ID+","+data.ParentId+")' ><span class='label label-danger label-mini' style='margin-left:5px;'>通过</span></a></td></tr>";
 							$("#dataContent").append(str);
 							}
 							//显示分页

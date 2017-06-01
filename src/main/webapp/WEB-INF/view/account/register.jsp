@@ -34,16 +34,13 @@
 			</div>
 			<div class="login-wrap">
 				<p>请输入个人信息</p>
-				<input type="text" name="phone" placeholder="手机号码"
-					class="form-control" maxlength="11" /> <input type="password"
-					name="password" placeholder="密码" class="form-control" id="password"
-					maxlength="16" /> <input type="password" name="confirmpassword"
-					placeholder="确认密码" class="form-control" maxlength="16" /> <input
-					type="text" name="name" placeholder="代理姓名" class="form-control"
-					maxlength="8" /> <input type="text" name="qq" placeholder="联系QQ"
-					class="form-control" maxlength="11" /> <span><b> 选择代理 </b>&nbsp;&nbsp;&nbsp;</span>
-				<select id="example-multiple-optgroups" name="agentLevel">
-					<option value="">选择代理</option>
+				<input type="text" name="phone" placeholder="手机号码" class="form-control" maxlength="11" />
+					<input type="password" name="password" placeholder="密码" class="form-control" id="password" maxlength="16" /> 
+					<input type="password" name="confirmpassword" placeholder="确认密码" class="form-control" maxlength="16" /> 
+					<input type="text" name="name" placeholder="代理姓名" class="form-control" maxlength="8" /> 
+					<input type="text" name="qq" placeholder="联系QQ" class="form-control" maxlength="11" /> 
+				<select id="example-multiple-optgroups" class="form-control input-sm m-bot15" name="agentLevel">
+					<option value="">选择代理级别</option>
 					<c:forEach var="item" items="${agentLevelList}" varStatus="status">
 					    <c:if test="${item.PropertyValue > 0}">
 						  <option value="${item.PropertyValue}">${item.PropertyName}</option>
@@ -110,7 +107,8 @@
 										isMobile : true
 									},
 									password : {
-										required : true
+										required : true,
+										minlength : 5
 									},
 									confirmpassword : {
 										required : true,
@@ -134,7 +132,8 @@
 										isMobile : "手机号格式不正确"
 									},
 									password : {
-										required : "请输入密码"
+										required : "请输入密码",
+										minlength : "密码至少是6位"
 									},
 									confirmpassword : {
 										required : "请输入确认密码",

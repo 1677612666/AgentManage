@@ -46,7 +46,7 @@
 			<div class="row">
 				<div class="col-sm-12">
 					<section class="panel"> <header class="panel-heading">
-					会员信息 &nbsp;&nbsp;&nbsp; <a><i class="fa fa-search"></i></a> </header>
+					会员信息 &nbsp;&nbsp;&nbsp; <a onclick="openSearch()" ><i class="fa fa-search"></i></a> </header>
 					<div class="panel-body">
 						<section id="unseen">
 						<table
@@ -67,8 +67,8 @@
 							<tbody id="dataContent">
 							</tbody>
 						</table>
-						<span id="totalCount"></span>
-						<div id="pagin" style="float: right;"></div>
+							<span id="totalCount"></span>
+							<div id="pagin" style="float: right;"></div>
 						</section>
 					</div>
 					</section>
@@ -90,33 +90,44 @@
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
 						aria-hidden="true">&times;</button>
-					<h4 class="modal-title">编辑会员</h4>
+					<h4 class="modal-title">查看会员</h4>
 				</div>
-				<div class="modal-body">
-					<div class="form-group">
-						<label for="exampleInputEmail1">Email address</label> <input
-							type="email" class="form-control" id="exampleInputEmail1"
-							placeholder="Enter email" />
+				<form action="memberEdit" method="get">
+					<div class="modal-body">
+						<div class="form-group">
+							<label for="exampleInputEmail1">头像 : <span id="WeChatUrl"></span></label> 
+						</div>
+						<div class="form-group">
+							<label for="exampleInputEmail1">会员ID : <span id="gameID"></span></label> 
+						</div>
+						<div class="form-group">
+							<label for="exampleInputEmail1">身份证  : <span id="IdentityID"></span></label>
+						</div>
+						<div class="form-group">
+							<label for="exampleInputEmail1">昵称 : <span id="NickName"></span></label> 
+						</div>
+						<div class="form-group">
+							<label for="exampleInputEmail1">真实姓名  : <span id="Name"></span></label>
+						</div>
+						<div class="form-group">
+							<label for="exampleInputEmail1">剩余房卡数量 : <span id="Score"></span></label>
+						</div>
+						<div class="form-group">
+							<label for="exampleInputEmail1">总房卡数量 : <span id="Score">500</span></label>
+						</div>
+						<div class="form-group">
+							<label for="exampleInputEmail1">消耗房卡数量 : <span id="Score">200</span></label>
+						</div>
 					</div>
-					<div class="form-group">
-						<label for="exampleInputEmail1">Email address</label> <input
-							type="email" class="form-control" id="exampleInputEmail1"
-							placeholder="Enter email" />
-					</div>
-					<div class="form-group">
-						<label for="exampleInputEmail1">Email address</label> <input
-							type="email" class="form-control" id="exampleInputEmail1"
-							placeholder="Enter email" />
-					</div>
-				</div>
+				</form>
 				<div class="modal-footer">
-					<button data-dismiss="modal" class="btn btn-default" type="button">取消</button>
-					<button class="btn btn-primary" type="button">提交</button>
+					<button data-dismiss="modal" class="btn btn-default" type="button">确定</button>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- modal --> <!-- main content end--> </section>
+	<!-- modal --> <!-- main content end--> 
+	</section>
 	<!-- Placed js at the end of the document so the pages load faster -->
 	<script src="${BASE_PATH}/js/jquery-1.10.2.min.js"></script>
 	<script src="${BASE_PATH}/js/jquery-ui-1.9.2.custom.min.js"></script>
@@ -132,67 +143,95 @@
 	<script src="${BASE_PATH}/js/scripts.js"></script>
 	<script type="text/javascript">
 	
-        //详情页面
-		function memberDetails() {
+		//详情页面
+		function memberLook(data) {
 			//model表单赋值
+			$('#myModal').on('show.bs.modal', function () {
+				$("#gameID").html(data.GameID);
+				$("#IdentityID").html(data.IdentityID);
+				$("#NickName").html(data.NickName);
+				$("#Name").html(data.Name);
+				$("#Score").html(data.Score);
+				$("#Score").html(data.Score);
+			})
 			
 			//弹出model
 			$('#myModal').modal('show');
+		}
+		
+		// 搜索框
+		function openSearch(){
+			layer.prompt({
+				  title: '搜索会员(ID/昵称)'
+				}, function(value, index, elem){
+					location.href="member?searchContent="+value;
+				 	layer.close(index);
+				});
+		}
+		
+		// 会员冻结
+		function memberEdit(id) {
+			layer.confirm('你确定冻结此会员?', {
+				  btn: ['确定', '在想想'], //可以无限个按钮
+				  title: "提示",
+				}, function(index, layero){
+					location.href="member/memberEdit?id="+id;
+				}, function(index){
+				  //按钮【按钮二】的回调
+				});
 		}
         
 		//后台用户分页
 		function page(curr) {
 			layer.load(2);
-			$
-					.getJSON(
-							'${BASE_PATH}/member/getMemberList',
-							{
-								pageIndex : curr || 1
-							},
-							function(res) {
-								layer.closeAll('loading');
-								//数据处理
-								$("#totalCount").text(
-										"共  " + res.totalRow + " 条记录");
-								$("#dataContent").empty();
-								for (var i = 0; i < res.list.length; i++) {
-									//添加列表数据
-									var data = res.list[i];
-									var str = "<tr><td>"
-											+ data.GameID
-											+ "</td><td>"
-											+ data.IdentityID
-											+ "</td><td class='numeric'>"
-											+ data.NickName
-											+ "</td><td class='numeric'>"
-											+ data.Name
-											+ "</td><td class='numeric'>"
-											+ data.Score
-											+ "</td><td class='numeric'>"
-											+ data.Score
-											+ "</td><td class='numeric'>"
-											+ data.sex
-											+ "</td><td class='numeric'>"
-											+ data.LastLoginTime
-											+ "</td><td class='numeric'><a onclick='memberDetails()'><span class='label label-info label-mini'>编辑</span></a>"
-											+ "<a><span class='label label-danger label-mini' style='margin-left:5px;'>删除</span></a></td></tr>";
-									$("#dataContent").append(str);
-								}
-								//显示分页
-								laypage({
-									cont : 'pagin', //容器。值支持id名、原生dom对象，jquery对象。【如该容器为】：<div id="page1"></div>
-									pages : res.totalPage, //通过后台拿到的总页数
-									curr : curr || 1, //当前页
-									skip : true, //是否开启跳页
-									skin : 'molv', //皮肤，可自定义颜色#ffffff
-									groups : 3,//连续显示分页数
-									jump : function(obj, first) { //触发分页后的回调
-										if (!first) { //点击跳页触发函数自身，并传递当前页：obj.curr
-											page(obj.curr);
-										}
+			$.getJSON('${BASE_PATH}/member/getMemberList',
+						{
+							pageIndex : curr || 1
+						},
+						function(res) {
+							layer.closeAll('loading');
+							//数据处理
+							$("#totalCount").text(
+									"共  " + res.totalRow + " 条记录");
+							$("#dataContent").empty();
+							for (var i = 0; i < res.list.length; i++) {
+								//添加列表数据
+								var data = res.list[i];
+								var str = "<tr><td>"
+										+ data.GameID
+										+ "</td><td>"
+										+ data.IdentityID
+										+ "</td><td class='numeric'>"
+										+ data.NickName
+										+ "</td><td class='numeric'>"
+										+ data.Name
+										+ "</td><td class='numeric'>"
+										+ data.Score
+										+ "</td><td class='numeric'>"
+										+ data.Score
+										+ "</td><td class='numeric'>"
+										+ data.sex
+										+ "</td><td class='numeric'>"
+										+ data.LastLoginTime
+										+ "</td><td class='numeric'><a onclick='memberLook("+JSON.stringify(data)+")'><span class='label label-info label-mini'>查看</span></a>"
+										+ "<a onclick='memberEdit("+data.GameID+")' ><span class='label label-danger label-mini' style='margin-left:5px;'>冻结</span></a></td></tr>";
+								$("#dataContent").append(str);
+							}
+							//显示分页
+							laypage({
+								cont : 'pagin', //容器。值支持id名、原生dom对象，jquery对象。【如该容器为】：<div id="page1"></div>
+								pages : res.totalPage, //通过后台拿到的总页数
+								curr : curr || 1, //当前页
+								skip : true, //是否开启跳页
+								skin : 'molv', //皮肤，可自定义颜色#ffffff
+								groups : 3,//连续显示分页数
+								jump : function(obj, first) { //触发分页后的回调
+									if (!first) { //点击跳页触发函数自身，并传递当前页：obj.curr
+										page(obj.curr);
 									}
-								});
+								}
 							});
+						});
 		};
 		//运行
 		page();
